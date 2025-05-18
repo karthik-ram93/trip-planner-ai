@@ -6,7 +6,7 @@ from constants.app_constants import USER_ROLE,ASSISTANT_ROLE
 
 class TripPlanner:
     def __init__(self):
-        self.system_prompt = TRAVEL_ASSISTANT_SYSTEM_PROMPT_V3_1SHOT
+        self.system_prompt = TRAVEL_ASSISTANT_SYSTEM_PROMPT_V1
         self.message_history = [ SystemMessage(content=self.system_prompt) ]
 
     def construct_messages(self, content,role):

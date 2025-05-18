@@ -2,7 +2,7 @@ import sys, os
 
 from configs.app_config import AppConfig  # Import the configuration
 from services.trip_planner import TripPlanner
-from models.huggingface_model import HuggingFaceModel
+from models.llm_model import OllamaModel
 from services.output_processor import OutputProcessor
 from utils.helpers import validate_query
 from constants.app_constants import USER_ROLE, ASSISTANT_ROLE
@@ -12,9 +12,9 @@ def main():
     print("Welcome to Trip Planner AI!")
     print("Getting the application ready ....!")
 
-    # Initialize the HuggingFace model with the model name from AppConfig
-    huggingface_model = HuggingFaceModel(model_name=AppConfig.MODEL_NAME)
-    llm_model = huggingface_model.get_chat_instance()
+    # Initialize the LLM model with the model name from AppConfig
+    llm_instance = OllamaModel(model_name=AppConfig.MODEL_NAME)
+    llm_model = llm_instance.get_chat_instance()
 
     first_conversation  = True
     trip_planner = None
@@ -43,8 +43,7 @@ def main():
         # Process and display the response
         processed_output = OutputProcessor.process_response(response)
         trip_planner.construct_messages(processed_output, ASSISTANT_ROLE) 
-        print("\nHere are some suggestions for your trip:")
-        print(processed_output)
+        print("\nModel Output : \n\n", processed_output)
             
 
 if __name__ == "__main__":
