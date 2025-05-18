@@ -4,8 +4,9 @@ import getpass
 
 def validate_query(query):
     if not query or len(query.strip()) == 0:
-        raise ValueError("Query cannot be empty.")
-    return query.strip()
+        return None
+    else :
+        return query.strip()
 
 def format_suggestions(suggestions):
     if not suggestions:
