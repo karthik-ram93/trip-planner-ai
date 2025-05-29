@@ -1,5 +1,4 @@
-from langchain_ollama import ChatOllama
-
+from langchain_ollama import ChatOllama, OllamaEmbeddings
 from configs.app_config import AppConfig  # Import AppConfig
 
 class OllamaModel:
@@ -13,3 +12,9 @@ class OllamaModel:
 
     def get_chat_instance(self):
         return self.llm
+
+def get_ollama_embedding_model():
+    """
+    Returns an OllamaEmbeddings instance for use in vector store embedding.
+    """
+    return OllamaEmbeddings(model="nomic-embed-text:v1.5")
